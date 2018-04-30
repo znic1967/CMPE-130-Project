@@ -3,12 +3,80 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Encrypto</title>
+		<link rel="stylesheet" href="bootstrap.css">
 		<link href = "main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<h1>
-			Zack is a legend.
+			AES Image Encryption Project
 		</h1>
+
+		<ul class="list-inline">
+			<li class="list-inline-item"><a id="all" href="#">Show All</a></li>
+			<li class="list-inline-item"><a id="user1" href="#">User 1</a></li>
+			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
+			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
+			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
+		</ul>
+		<div class="container-fluid">
+			<div class="row">
+        		<div class="col-sm">
+        			<img src="img/user_images/1.jpg" id="1">
+        			<img src="img/user_images/5.jpg" id="5">
+        		</div>
+        		<div class="col-sm">
+        			<img src="img/user_images/2.jpg" id="2">
+        			<img src="img/user_images/6.jpg" id="6">
+
+        		</div>
+        		<div class="col-sm">
+        			<img src="img/user_images/3.jpg" id="3">
+        			<img src="img/user_images/7.jpg" id="7">
+        		</div>
+        		<div class="col-sm">
+        			<img src="img/user_images/4.jpg" id="4">
+        			<img src="img/user_images/8.jpg" id="8">
+        		</div>
+        	</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	    <script type="text/javascript" src="/frontend/js/bootstrap.js"></script>
+	    
+	    <script>
+	      	$(document).ready(function(){
+	      	  $("#all").click(function(){
+		          $('#1').show();
+		          $('#2').show();
+		          $('#3').show();
+		          $('#4').show();
+		          $('#5').show();
+		          $('#6').show();
+		          $('#7').show();
+		          $('#8').show();
+		      });
+		      $("#user1").click(function(){
+		          $('#1').hide();
+		          $('#2').show();
+		          $('#3').hide();
+		          $('#4').hide();
+		          $('#5').show();
+		          $('#6').hide();
+		          $('#7').show();
+		          $('#8').hide();
+		      });
+		      $("#user2").click(function(){
+		          $('#1').show();
+		          $('#2').hide();
+		          $('#3').hide();
+		          $('#4').show();
+		          $('#5').hide();
+		          $('#6').show();
+		          $('#7').show();
+		          $('#8').hide();
+		      });
+		    });
+    	</script>
 	</body>
 </html>
