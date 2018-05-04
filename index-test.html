@@ -28,6 +28,7 @@
       <input type="button" onclick="var start = (new Date).getTime();encryptAES();this.value='Encrypt ' + ((new Date).getTime() - start) + 'ms'" value="Encrypt">
       <input type="button" onclick="clear_canvas();" value="Clear">
       <input type="button" onclick="var start = (new Date).getTime();decryptAES();this.value='Decrypt ' + ((new Date).getTime() - start) + 'ms'" value="Decrypt"><br>
+      <input type="button" onclick="displayEncryptedImg();" value="Display Scrambled Image"><br>
       <br>
     </span>
     <canvas id="leif" width="160" height="120"></canvas><br><br>
@@ -65,6 +66,9 @@
 
       var img = new Image();
       img.src = 'kafka160120.jpg';
+
+      var sImg = new Image();
+      sImg.src = 'img/scrambled.png';
       //img.crossOrigin = "null";
       var width=160;
       var height=120;
@@ -110,6 +114,8 @@
         var encrypted = Krypto.AES.encrypt(s, password);
         document.getElementById('ta').value=encrypted;
         document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
+        //clear_canvas();
+        ctx.drawImage(sImg, 0, 0);
       }
 
       function decryptAES() {
@@ -121,6 +127,7 @@
         ctx.putImageData(imgd,0,0);
         document.getElementById('ta').value="";
       }
+
     </script>
   </body>
 </html>

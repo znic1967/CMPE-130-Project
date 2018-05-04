@@ -10,6 +10,13 @@ h1{
 	text-align: center;
 	padding: 20px;
 }
+h2{
+	font-size: 20px;
+	font-family: Helvetica;
+	color: white;
+	text-align: center;
+	padding: 0px;
+}
 
 .col-sm img{
 	width: 250px;
@@ -26,4 +33,15 @@ li a{
 	color: white;
 	font-size: 20px;
 	font-family: Helvetica;
+}
+
+input.eData {
+	width:80%;
+	display: block;
+	margin: 0 auto;
+}
+
+.canV{
+	display: block;
+	margin: 0 auto;
 }
