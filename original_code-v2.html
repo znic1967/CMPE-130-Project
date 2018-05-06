@@ -15,38 +15,27 @@
     <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-ofb-aes.js"></script>
     <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-rabbit.js"></script>
   </head>
-  <body>
+  <body align="center">
     <span>
       <h1>Encrypt and decrypt HTML5 canvas</h1>
       <br>
-      JavaScript <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> and 
-      <a href="http://en.wikipedia.org/wiki/Rabbit_%28cipher%29">Rabbit</a> encryption and decryption of an image.
+      JavaScript <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> encryption and decryption of an image.
       <br>
-      Uses <a href="http://code.google.com/p/crypto-js/">Crypto-JS</a>.
-      <br><br>
-      <a href="http://alicebobandmallory.com/articles/2010/10/14/encrypt-images-in-javascript">Blog post</a>.
-      <br><br>
       <form name="f">
-<b>Rabbit</b><br>
-<input type="button" onclick="var start = (new Date).getTime();encryptRabbit();this.value='Encrypt ' + ((new Date).getTime() - start) + 'ms'" value="Encrypt">
-| <input type="button" onclick="clear_canvas();" value="Clear">
-| <input type="button" onclick="var start = (new Date).getTime();decryptRabbit();;this.value='Decrypt ' + ((new Date).getTime() - start) + 'ms'" value="Decrypt"><br>
-<br>
-<b>AES</b><br>
-<input type="button" onclick="var start = (new Date).getTime();encryptAES();this.value='Encrypt ' + ((new Date).getTime() - start) + 'ms'" 
-value="Encrypt">
-| <input type="button" onclick="clear_canvas();" value="Clear">
-| <input type="button" onclick="var start = (new Date).getTime();decryptAES();this.value='Decrypt ' + ((new Date).getTime() - start) + 'ms'" value="Decrypt"><br>
-<br>
-</span>
-<canvas id="leif" width="160" height="120"></canvas><br><br>
-Password: <input id="password" type="password" size="20" value="test"><br><br>
-<input id="ta" name="encrypted" type="text" size="80" value="There will be dragons."><div id="chars"></div><br><br>
-</form>
-<span>
-<br>
-</span>
-<script type="text/javascript">
+      <b>AES</b><br>
+        <input type="button" onclick="var start = (new Date).getTime();encryptAES();this.value='Encrypt ' + ((new Date).getTime() - start) + 'ms'" value="Encrypt">
+|       <input type="button" onclick="clear_canvas();" value="Clear">
+|       <input type="button" onclick="var start = (new Date).getTime();decryptAES();this.value='Decrypt ' + ((new Date).getTime() - start) + 'ms'" value="Decrypt"><br>
+      <br>
+      </span>
+      <canvas id="leif" width="250" height="250"></canvas><br><br>
+      Password: <input id="password" type="text" size="20" value="test"><br><br>
+      <input id="ta" name="encrypted" type="text" size="80" value="There will be dragons."><div id="chars"></div><br><br>
+      </form>
+      <span>
+      <br>
+      </span>
+      <script type="text/javascript">
 /*
 Copyright 2010 Jonas Elfström. All rights reserved.
 
@@ -76,9 +65,9 @@ or implied, of Jonas Elfström.
 */
 
   var img = new Image();
-  img.src = 'img/kafka160120.jpg';
-  var width=160;
-  var height=120;
+  img.src = 'img/2.jpg';
+  var width=250;
+  var height=250;
   var ctx, imgd, pix;
   
   img.onload = function() {
@@ -89,7 +78,7 @@ or implied, of Jonas Elfström.
   }
 
   function clear_canvas() {
-    ctx.clearRect(0,0,160,120);
+    ctx.clearRect(0,0,250,250);
     imgd.data=[];
   }
 
@@ -115,23 +104,6 @@ or implied, of Jonas Elfström.
     return p;
   }
 
-  function encryptRabbit() {
-    var password = document.getElementById('password').value;
-    var s=canvasArrToString(pix);
-    var encrypted = Crypto.Rabbit.encrypt(s, password);
-    document.getElementById('ta').value=encrypted;
-    document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
-  }
-
-  function decryptRabbit() {
-    var password = document.getElementById('password').value;
-    var arr=canvasStringToArr(Crypto.Rabbit.decrypt(document.getElementById('ta').value, password));
-    pix=arr;
-    imgd.data=pix;
-    ctx.putImageData(imgd,0,0);
-    document.getElementById('ta').value="";
-  }
-
   function encryptAES() {
     var password = document.getElementById('password').value;
     var s=canvasArrToString(pix);
@@ -149,21 +121,19 @@ or implied, of Jonas Elfström.
     ctx.putImageData(imgd,0,0);
     document.getElementById('ta').value="";
   }
-</script>
-<br><br>
-<span>
-<br><br>
-2010-10-14<br>
-<a href="mailto:jonas@plea.se">jonas@plea.se</a>
-</span>
-</body>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-4453587-2");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+    </script>
+  </body>
+  <footer>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+          var pageTracker = _gat._getTracker("UA-4453587-2");
+          pageTracker._trackPageview();
+        }
+        catch(err) {}
+    </script>
+  </footer>
 </html>

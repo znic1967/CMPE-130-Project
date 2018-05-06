@@ -70,23 +70,19 @@
 	    
 	    <script>
         var user1pass="u1p";
-        var own1=[1,4,6];
-        var own2=[2,3];
-        var own3=[5];
-        var own4=[7,8];
+        var ownershipAry = [
+          [1,2],
+          [5,8],
+          [3,6],
+          [7,4]
+        ];
         var currentUser="";
 
-	      	// $(document).ready(function(){
-	      	//   $("#all").click(function(){
-		      //     $('#1').show();
-		      //     $('#2').show();
-		      //     $('#3').show();
-		      //     $('#4').show();
-		      //     $('#5').show();
-		      //     $('#6').show();
-		      //     $('#7').show();
-		      //     $('#8').show();
-		      // });
+	      	$(document).ready(function(){
+	      	  $("#user1").click(function(){
+              encryptAll();
+            });
+		      });
 		      // $("#user1").click(function(){
 		      //     $('#1').hide();
 		      //     $('#2').show();
@@ -212,14 +208,11 @@
         document.getElementById('ta').value="";
       }
 
-      // function encryptAll() { //Go through each user and encrypt the images they own with their password.
-      //   for(var i=1; i<=4; i++){
-      //     var current="own"+i; //Should be name of array of owned images
-      //     for(var j=0; current.length(); j++{
-      //       encryptAES(u1p,current[j]);
-      //     }
-      //   }
-      // }
+      function encryptAll() { //Go through each user and encrypt the images they own with their password.
+        for(var i=1; i<=4; i++){
+          console.log("Item: "+ownershipAry[i][0]);
+        }
+      }
 
     </script>
 	</body>
