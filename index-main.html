@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="bootstrap.css">
 		<link href = "main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-ofb-aes.js"></script>
 	</head>
 	<body>
 		<h1>
@@ -37,30 +39,30 @@
         		<div class="col-sm">
         			<canvas class="canV" id="img2" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 2">
+              <input id="img2data" class="eData" name="encrypted" type="text" size="80" value="Image 2">
 
         			<canvas class="canV" id="img6" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 6">
+              <input id="img6data" class="eData" name="encrypted" type="text" size="80" value="Image 6">
 
         		</div>
         		<div class="col-sm">
         			<canvas class="canV" id="img3" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 3">
+              <input id="img3data" class="eData" name="encrypted" type="text" size="80" value="Image 3">
 
         			<canvas class="canV" id="img7" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 7">
+              <input id="img7data" class="eData" name="encrypted" type="text" size="80" value="Image 7">
         		</div>
         		<div class="col-sm">
         			<canvas class="canV" id="img4" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 4">
+              <input id="img4data" class="eData" name="encrypted" type="text" size="80" value="Image 4">
 
               <canvas class="canV" id="img8" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 8">
+              <input id="img8data" class="eData" name="encrypted" type="text" size="80" value="Image 8">
         		</div>
         	</div>
 		</div>
@@ -69,13 +71,13 @@
 	    <script type="text/javascript" src="bootstrap.js"></script>
 	    
 	    <script>
-        var user1pass="u1p";
         var ownershipAry = [
           [1,2],
           [5,8],
           [3,6],
           [7,4]
         ];
+        var passwordAry = ["u1p","u2p","u3p","u4p"];
         var currentUser="";
 
 	      	$(document).ready(function(){
@@ -143,27 +145,63 @@
       var ctx, imgd, pix1, pix2, pix3;
       
       img1.onload = function() {
-        ctx = document.getElementById('img1').getContext('2d');
-        ctx.drawImage(img1,0,0,250,250);
+        ctx1 = document.getElementById('img1').getContext('2d');
+        ctx1.drawImage(img1,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
-        pix1 = imgd.data;
+        imgd = ctx1.getImageData(0,0,width,height);
+        pix = imgd.data;
       }
       img2.onload = function() {
-        ctx = document.getElementById('img2').getContext('2d');
-        ctx.drawImage(img2,0,0,250,250);
+        ctx2 = document.getElementById('img2').getContext('2d');
+        ctx2.drawImage(img2,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
+        imgd = ctx2.getImageData(0,0,width,height);
         pix2 = imgd.data;
       }
       img3.onload = function() {
-        ctx = document.getElementById('img3').getContext('2d');
-        ctx.drawImage(img3,0,0,250,250);
+        ctx3 = document.getElementById('img3').getContext('2d');
+        ctx3.drawImage(img3,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
+        imgd = ctx3.getImageData(0,0,width,height);
         pix3 = imgd.data;
       }
-      function clear_canvas() {
+      img4.onload = function() {
+        ctx4 = document.getElementById('img4').getContext('2d');
+        ctx4.drawImage(img4,0,0,250,250);
+
+        imgd = ctx4.getImageData(0,0,width,height);
+        pix4 = imgd.data;
+      }
+      img5.onload = function() {
+        ctx5 = document.getElementById('img5').getContext('2d');
+        ctx5.drawImage(img5,0,0,250,250);
+
+        imgd = ctx5.getImageData(0,0,width,height);
+        pix5 = imgd.data;
+      }
+      img6.onload = function() {
+        ctx6 = document.getElementById('img6').getContext('2d');
+        ctx6.drawImage(img6,0,0,250,250);
+
+        imgd = ctx6.getImageData(0,0,width,height);
+        pix6 = imgd.data;
+      }
+      
+      img7.onload = function() {
+        ctx7 = document.getElementById('img7').getContext('2d');
+        ctx7.drawImage(img7,0,0,250,250);
+
+        imgd = ctx7.getImageData(0,0,width,height);
+        pix7 = imgd.data;
+      }
+      img8.onload = function() {
+        ctx8 = document.getElementById('img8').getContext('2d');
+        ctx8.drawImage(img8,0,0,250,250);
+
+        imgd = ctx8.getImageData(0,0,width,height);
+        pix8 = imgd.data;
+      }
+      function clear_canvas(ctx_num) {
         ctx.clearRect(0,0,160,120);
         imgd.data=[];
       }
@@ -191,12 +229,14 @@
       }
 
       function encryptAES(pass, imgnum) {
-        var id=imgnum+".jpg";
+        var id="img"+imgnum+"data";
         var s=canvasArrToString(pix);
         var encrypted = Krypto.AES.encrypt(s, pass);
         document.getElementById(id).value=encrypted;
 
-        ctx.drawImage(sImg, 0, 0);
+        var ctx_str="ctx"+imgnum;
+        var ctx_tb=eval(ctx_str);
+        ctx_tb.drawImage(sImg, 0, 0);
       }
 
       function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
@@ -209,8 +249,12 @@
       }
 
       function encryptAll() { //Go through each user and encrypt the images they own with their password.
-        for(var i=1; i<=4; i++){
-          console.log("Item: "+ownershipAry[i][0]);
+        for(var i=0; i<4; i++){
+          for(var j=0; j<2; j++){
+
+            encryptAES(passwordAry[i], ownershipAry[i][j]);
+            //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+          }
         }
       }
 
