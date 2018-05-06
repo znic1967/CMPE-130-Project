@@ -1,43 +1,4 @@
-<!-- <?xml version="1.0" encoding="utf-8"?> -->
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Encrypt image with JavaScript</title>
-    <meta name="author" content="Jonas Elfström">
-    <style type="text/css">
-      span {
-              font-family: 'Lucida Sans Unicode';
-              color: #000000;
-              background: #FFFFFF;
-              font-size: 10pt;
-      }
-  </style>
-    <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-ofb-aes.js"></script>
-  </head>
-
-<body>
-  <span>
-    <h1>Encrypt and decrypt HTML5 canvas</h1>
-    <br>
-    JavaScript <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> encryption and decryption of an image.
-    <br>
-    Uses <a href="http://code.google.com/p/crypto-js/">Crypto-JS</a>.s
-
-    <form name="f">
-      <b>AES</b><br>
-      <input type="button" onclick="var start = (new Date).getTime();encryptAES();this.value='Encrypt ' + ((new Date).getTime() - start) + 'ms'" value="Encrypt">
-      <input type="button" onclick="clear_canvas();" value="Clear">
-      <input type="button" onclick="var start = (new Date).getTime();decryptAES();this.value='Decrypt ' + ((new Date).getTime() - start) + 'ms'" value="Decrypt"><br>
-      <input type="button" onclick="displayEncryptedImg();" value="Display Scrambled Image"><br>
-      <br>
-    </span>
-    <canvas id="leif" width="160" height="120"></canvas><br><br>
-    Password: <input id="password" type="text" size="20" value="test"><br><br>
-    <input id="ta" name="encrypted" type="text" size="80" value="There will be dragons."><div id="chars"></div><br><br>
-  </form>
-    <script type="text/javascript">
-
-    // Copyright 2010 Jonas Elfström. All rights reserved.
+// Copyright 2010 Jonas Elfström. All rights reserved.
 
     // Redistribution and use in source and binary forms, with or without modification, are
     // permitted provided that the following conditions are met:
@@ -127,7 +88,3 @@
         ctx.putImageData(imgd,0,0);
         document.getElementById('ta').value="";
       }
-
-    </script>
-  </body>
-</html>
