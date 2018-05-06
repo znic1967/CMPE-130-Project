@@ -66,7 +66,7 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	    <script type="text/javascript" src="/frontend/js/bootstrap.js"></script>
+	    <script type="text/javascript" src="bootstrap.js"></script>
 	    
 	    <script>
         var user1pass="u1p";
@@ -194,7 +194,7 @@
         return p;
       }
 
-      function encryptAES(pass, imgnum)) {
+      function encryptAES(pass, imgnum) {
         var id=imgnum+".jpg";
         var s=canvasArrToString(pix);
         var encrypted = Krypto.AES.encrypt(s, pass);
@@ -212,14 +212,14 @@
         document.getElementById('ta').value="";
       }
 
-      function encryptAll()) { //Go through each user and encrypt the images they own with their password.
-        for(var i=1; i<=4; i++){
-          var current="own"+i; //Should be name of array of owned images
-          for(var j=0; current.length(); j++{
-            encryptAES(u1p,current[j]);
-          }
-        }
-      }
+      // function encryptAll() { //Go through each user and encrypt the images they own with their password.
+      //   for(var i=1; i<=4; i++){
+      //     var current="own"+i; //Should be name of array of owned images
+      //     for(var j=0; current.length(); j++{
+      //       encryptAES(u1p,current[j]);
+      //     }
+      //   }
+      // }
 
     </script>
 	</body>
