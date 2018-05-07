@@ -22,6 +22,7 @@
 			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
       <br>
       <li class="list-inline-item"><h2>Current User: </h2><h2 id="currentUser"> Not Logged In</h2></li>
+      <li class="list-inline-item" id="userLi"><h2>Current User: </h2><h2 id="currentUser"> Not Logged In</h2></li>
       <li class="list-inline-item"><a id="logout" href="#">Logout</a></li>
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select User
@@ -112,12 +113,17 @@
 
 
         $(document).ready(function(){
+
+          $( "#userLi" ).hide();
+          $( "#logout" ).hide();
+
           $("#all").click(function(){
             encryptAll();          
           });
           $("#logout").click(function(){
             currentUser = "";
-            document.getElementById("currentUser").innerHTML = "Not Logged In";
+            $( "#userLi" ).hide();
+            $( "#logout" ).hide();
             encryptAll();
           });
 
@@ -125,6 +131,9 @@
             encryptAll();
             currentUser=0; 
             document.getElementById("currentUser").innerHTML = currentUser+1;
+
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
@@ -136,6 +145,8 @@
             encryptAll();
             currentUser=1; 
             document.getElementById("currentUser").innerHTML = currentUser+1;
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();
              for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
@@ -147,6 +158,9 @@
             encryptAll();
             currentUser =2; 
             document.getElementById("currentUser").innerHTML = currentUser+1;
+
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();   
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
@@ -158,6 +172,10 @@
             encryptAll();  
             currentUser=3;
             document.getElementById("currentUser").innerHTML = currentUser+1;
+
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
+
             showOptions(); 
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
