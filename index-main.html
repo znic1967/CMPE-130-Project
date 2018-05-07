@@ -117,7 +117,10 @@
           $( "#logout" ).hide();
 
           $("#all").click(function(){
-            encryptAll();          
+            var start = (new Date).getTime();
+            encryptAll();  
+            document.getElementById("all").innerHTML = 'Encrypt All '+((new Date).getTime() - start) + 'ms';
+            console.log('Encrypt ' + ((new Date).getTime() - start) + 'ms');        
           });
           $("#logout").click(function(){
             currentUser = "";
@@ -286,6 +289,10 @@
  
         function viewData(imgnum){
           var id="img"+imgnum+"data";
+          if(!encrypted[imgnum]){
+            document.getElementById(id).value = eval("pix"+imgnum);
+          }
+          
           var data=document.getElementById(id).value;
           var preview=data.slice(0,2000);
 
