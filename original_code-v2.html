@@ -133,6 +133,7 @@ or implied, of Jonas Elfström.
   }
 
   function encryptAES() {
+    console.log(pix);
     var password = document.getElementById('password').value;
     var s=canvasArrToString(pix);
     var encrypted = Krypto.AES.encrypt(s, password);

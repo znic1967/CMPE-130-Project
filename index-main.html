@@ -15,7 +15,7 @@
 		</h1>
 
 		<ul class="list-inline">
-			<li class="list-inline-item"><a id="all" href="#">Show All</a></li>
+			<li class="list-inline-item"><a id="all" href="#">Encrypt All</a></li>
 			<li class="list-inline-item"><a id="user1" href="#">User 1</a></li>
 			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
 			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
@@ -40,11 +40,9 @@
         			<canvas class="canV" id="img2" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
               <input id="img2data" class="eData" name="encrypted" type="text" size="80" value="Image 2">
-
         			<canvas class="canV" id="img6" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
               <input id="img6data" class="eData" name="encrypted" type="text" size="80" value="Image 6">
-
         		</div>
         		<div class="col-sm">
         			<canvas class="canV" id="img3" width="250" height="250"></canvas>
@@ -80,37 +78,13 @@
         var passwordAry = ["u1p","u2p","u3p","u4p"];
         var currentUser="";
 
-	      	$(document).ready(function(){
-	      	  $("#user1").click(function(){
-              encryptAll();
-            });
-		      });
-		      // $("#user1").click(function(){
-		      //     $('#1').hide();
-		      //     $('#2').show();
-		      //     $('#3').hide();
-		      //     $('#4').hide();
-		      //     $('#5').show();
-		      //     $('#6').hide();
-		      //     $('#7').show();
-		      //     $('#8').hide();
-		      // });
-        // });
-		    //   $("#user2").click(function(){
-		    //       $('#1').show();
-		    //       $('#2').hide();
-		    //       $('#3').hide();
-		    //       $('#4').show();
-		    //       $('#5').hide();
-		    //       $('#6').show();
-		    //       $('#7').show();
-		    //       $('#8').hide();
-		    //   });
-		    // });
+
+        //encryptAll(); //Initialize all images to be encrypted
+
 
         $(document).ready(function(){
-          $("#user1").click(function(){
-              currentUser="u1";
+          $("#all").click(function(){
+            encryptAll();          
           });
         });
       var img1 = new Image();
@@ -142,15 +116,20 @@
 
       var width=250;
       var height=250;
-      var ctx, imgd, pix1, pix2, pix3;
+      var ctx1, ctx2, ctx3, ctx4,ctx5, ctx6, ctx7, ctx8;
+      var imgd;
+      var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8;
       
       img1.onload = function() {
         ctx1 = document.getElementById('img1').getContext('2d');
         ctx1.drawImage(img1,0,0,250,250);
 
         imgd = ctx1.getImageData(0,0,width,height);
-        pix = imgd.data;
+        pix1 = imgd.data;
+        //console.log("Trying to reload");
+
       }
+
       img2.onload = function() {
         ctx2 = document.getElementById('img2').getContext('2d');
         ctx2.drawImage(img2,0,0,250,250);
@@ -201,23 +180,28 @@
         imgd = ctx8.getImageData(0,0,width,height);
         pix8 = imgd.data;
       }
+
       function clear_canvas(ctx_num) {
         ctx.clearRect(0,0,160,120);
         imgd.data=[];
       }
 
-      function canvasArrToString(a) {
-        var s="";
+
+      //Important Functions ============================================================================
+      function canvasArrToString(pix_tb) {
+        var str="";
+        console.log("test");
+        //var pix_in=pix1;
         // Removes alpha to save space.
-        for (var i=0; i<pix.length; i+=4) {
-          s+=(String.fromCharCode(pix[i]) 
-              + String.fromCharCode(pix[i+1]) 
-              + String.fromCharCode(pix[i+2]));
+        for (var i=0; i<pix_tb.length; i+=4) {
+          str+=(String.fromCharCode(pix_tb[i]) 
+              + String.fromCharCode(pix_tb[i+1]) 
+              + String.fromCharCode(pix_tb[i+2]));
         }
-        return s;
+        return str;
       }
 
-      function canvasStringToArr(s) {
+      function canvasStringToArr(test) {
         var p=[];
         for (var i=0; i<s.length; i+=3) {
           for (var j=0; j<3; j++) {
@@ -229,14 +213,23 @@
       }
 
       function encryptAES(pass, imgnum) {
+
+        //console.log(pix1);
         var id="img"+imgnum+"data";
-        var s=canvasArrToString(pix);
-        var encrypted = Krypto.AES.encrypt(s, pass);
+
+        var pix_str="pix"+imgnum;
+        var pix_tb=eval(pix_str);
+
+        //console.log(pix_tb);
+        var str=canvasArrToString(pix_tb);
+        var encrypted = Krypto.AES.encrypt(str, pass);
         document.getElementById(id).value=encrypted;
 
         var ctx_str="ctx"+imgnum;
         var ctx_tb=eval(ctx_str);
         ctx_tb.drawImage(sImg, 0, 0);
+
+        //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
       }
 
       function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
@@ -256,6 +249,7 @@
             //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
           }
         }
+        alert("Encryption Finished"); 
       }
 
     </script>
