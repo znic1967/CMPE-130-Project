@@ -21,7 +21,7 @@
 			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
 			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
       <br>
-      <li class="list-inline-item"><a id="showUser" href="#">Current User:</a></li>
+      <li class="list-inline-item" id="userLi"><h2>Current User: </h2><h2 id="currentUser"> Not Logged In</h2></li>
       <li class="list-inline-item"><a id="logout" href="#">Logout</a></li>
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select User
@@ -112,14 +112,24 @@
 
 
         $(document).ready(function(){
+          $( "#userLi" ).hide();
+          $( "#logout" ).hide();
+
           $("#all").click(function(){
             encryptAll();          
           });
-        });
-         $(document).ready(function(){
+          $("#logout").click(function(){
+            currentUser = "";
+            $( "#userLi" ).hide();
+            $( "#logout" ).hide();
+            encryptAll();
+          });
           $("#user1").click(function(){
             encryptAll();
             currentUser=0; 
+            document.getElementById("currentUser").innerHTML = currentUser+1;
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
@@ -127,11 +137,12 @@
               }
             }
           });
-        });
-          $(document).ready(function(){
           $("#user2").click(function(){
             encryptAll();
             currentUser=1; 
+            document.getElementById("currentUser").innerHTML = currentUser+1;
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();
              for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
@@ -139,23 +150,25 @@
               }
             }           
           });
-        });
-           $(document).ready(function(){
           $("#user3").click(function(){
             encryptAll();
             currentUser =2; 
+            document.getElementById("currentUser").innerHTML = currentUser+1;
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions();   
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
                 decryptUserImg(passwordAry[i]);
               }
             }       
-          });
-        });          
-            $(document).ready(function(){
+          });          
           $("#user4").click(function(){
             encryptAll();  
             currentUser=3;
+            document.getElementById("currentUser").innerHTML = currentUser+1;
+            $( "#userLi" ).show();
+            $( "#logout" ).show();
             showOptions(); 
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
