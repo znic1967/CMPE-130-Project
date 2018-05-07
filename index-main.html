@@ -273,7 +273,7 @@
         }
 
         function showOptions(){
-          if(currentUser ===""){}
+          if(currentUser === ""){}
           else{
             var count=1;
             for(var i=0; i<4; i++){
@@ -298,7 +298,9 @@
           }
           else{
             permissions[(currentUser+give)%4][currentUser] = true;
+            console.log((currentUser+give)%4+" "+currentUser);
             console.log(permissions[(currentUser+give)%4][currentUser]);
+            document.getElementById("give"+give).innerHTML = "";
           }
         }
 
@@ -307,8 +309,10 @@
             alert("You must sign in first!")
           }
           else{
-            permissions[(currentUser+give)%4][currentUser] = false;
-            console.log(permissions[(currentUser+give)%4][currentUser]);
+            permissions[(currentUser+take)%4][currentUser] = false;
+            console.log((currentUser+take)%4+" "+currentUser);
+            console.log(permissions[(currentUser+take)%4][currentUser]);
+            document.getElementById("revoke"+take).innerHTML = "";
           }
         }
         
@@ -364,7 +368,7 @@
         var pix_str="pix"+imgnum;
         var pix_tb=eval(pix_str);
         var imgd_tb = eval("imgd"+imgnum);
-        console.log(pix_str);
+        //console.log(pix_str);
         // console.log(pix_tb);
         
 
