@@ -27,42 +27,47 @@
     </form> -->
 		<div class="container-fluid">
 			<div class="row">
-        		<div class="col-sm">
-        			<canvas class="canV" id="img1" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
-        			
-              <canvas class="canV" id="img5" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img2" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
-        			<canvas class="canV" id="img6" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img3" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
+    		<div class="col-sm">
+    			<canvas class="canV" id="img1" width="250" height="250"></canvas>
+          <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
+          <input type="button" onclick="viewData(1);" value="View Encrypted Data">
+    			
+          <canvas class="canV" id="img5" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img2" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
+    			<canvas class="canV" id="img6" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img3" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
 
-        			<canvas class="canV" id="img7" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img4" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
+    			<canvas class="canV" id="img7" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img4" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
 
-              <canvas class="canV" id="img8" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
-        		</div>
-        	</div>
+          <canvas class="canV" id="img8" width="250" height="250"></canvas>
+          <h2>Encrypted Data</h2>
+          <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
+    		</div>
+    	</div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="eDataOut"></div>
+        </div>
+      </div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -185,6 +190,18 @@
           ctx.clearRect(0,0,160,120);
           imgd.data=[];
         }
+ 
+        function viewData(imgnum){
+          var data=document.getElementById('img1data').value;
+          var preview=data.slice(0,250);
+
+          var para = document.createElement("P");
+          var t = document.createTextNode(preview);
+          para.appendChild(t);
+          document.getElementById("eDataOut").appendChild(para);
+
+          console.log(preview);
+        }
 
 
         //Important Functions ============================================================================
@@ -215,7 +232,7 @@
         function encryptAES(pass, imgnum) {
 
           //console.log(pix1);
-          var id2="img"+imgnum+"data";
+          var id="img"+imgnum+"data";
 
           var pix_str="pix"+imgnum;
           var pix_tb=eval(pix_str);
@@ -223,7 +240,7 @@
           //console.log(pix_tb);
           var str=canvasArrToString(pix_tb);
           var encrypted = Krypto.AES.encrypt(str, pass);
-          document.getElementById(id2).value=encrypted;
+          document.getElementById(id).value=encrypted;
 
           var ctx_str="ctx"+imgnum;
           var ctx_tb=eval(ctx_str);
