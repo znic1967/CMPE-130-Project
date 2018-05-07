@@ -41,7 +41,28 @@ input.eData {
 	margin: 0 auto;
 }
 
+#eDataOut{
+	color: white;
+	word-wrap: break-word;
+}
+
 .canV{
 	display: block;
 	margin: 0 auto;
+	padding: 20px;
+}
+input.dButton{
+    padding:5px 15px; 
+    background:#10bce5; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    margin: 0 auto;
+    display: block;
+}
+
+#eDataHeading{
+	margin-top: 30px;
+	padding: 10px;
 }

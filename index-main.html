@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Encrypto</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link href = "main.css" rel="stylesheet">
+	<head>
+		<meta charset="utf-8">
+		<title>Encrypto</title>
+		<link rel="stylesheet" href="bootstrap.css">
+		<link href = "main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-ofb-aes.js"></script>
-  </head>
-  <body>
-    <h1>
-      AES Image Encryption Project
-    </h1>
+	</head>
+	<body>
+		<h1>
+			AES Image Encryption Project
+		</h1>
 
-    <ul class="list-inline">
-      <li class="list-inline-item"><a id="all" href="#">Encrypt All</a></li>
-      <li class="list-inline-item"><a id="user1" href="#">User 1</a></li>
-      <li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
-      <li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
-      <li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
-    </ul>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a id="all" href="#">Encrypt All</a></li>
+			<li class="list-inline-item"><a id="user1" href="#">User 1</a></li>
+			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
+			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
+			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
+		</ul>
 <!--     <form id="passinput" onsubmit="return false;">
       <input type="text" id="userInput" />
       <input type="submit" onclick="othername();" />
     </form> -->
+<<<<<<< HEAD
     <div class="container-fluid">
       <div class="row">
             <div class="col-sm">
@@ -108,6 +109,7 @@
           });
         });
 
+<<<<<<< HEAD
 
       var img1 = new Image();
       img1.src = 'img/user_images/1.jpg';
@@ -203,13 +205,25 @@
         pix8 = imgd8.data;
       }
 
-      function clear_canvas(ctx_num) {
-        ctx.clearRect(0,0,160,120);
-        imgd.data=[];
-      }
+        function clear_canvas(ctx_num) {
+          ctx.clearRect(0,0,160,120);
+          imgd.data=[];
+        }
+ 
+        function viewData(imgnum){
+          var id="img"+imgnum+"data";
+          var data=document.getElementById(id).value;
+          var preview=data.slice(0,2000);
+
+          document.getElementById("eDataHeading").innerHTML = "First 2000 Characters of Encrypted Data for Image "+imgnum;
+          document.getElementById("eDataOut").innerHTML = preview;
+
+          console.log(preview);
+        }
 
 
-      //Important Functions ============================================================================
+        //Important Functions ============================================================================
+
       function canvasArrToString(pix_tb) {
         var str="";
         console.log("test");
@@ -234,25 +248,25 @@
         return p;
       }
 
-      function encryptAES(pass, imgnum) {
+        function encryptAES(pass, imgnum) {
 
-        //console.log(pix1);
-        var id="img"+imgnum+"data";
+          //console.log(pix1);
+          var id="img"+imgnum+"data";
 
-        var pix_str="pix"+imgnum;
-        var pix_tb=eval(pix_str);
+          var pix_str="pix"+imgnum;
+          var pix_tb=eval(pix_str);
 
-        //console.log(pix_tb);
-        var str=canvasArrToString(pix_tb);
-        var encrypted = Krypto.AES.encrypt(str, pass);
-        document.getElementById(id).value=encrypted;
+          //console.log(pix_tb);
+          var str=canvasArrToString(pix_tb);
+          var encrypted = Krypto.AES.encrypt(str, pass);
+          document.getElementById(id).value=encrypted;
 
-        var ctx_str="ctx"+imgnum;
-        var ctx_tb=eval(ctx_str);
-        ctx_tb.drawImage(sImg, 0, 0);
+          var ctx_str="ctx"+imgnum;
+          var ctx_tb=eval(ctx_str);
+          ctx_tb.drawImage(sImg, 0, 0);
 
-        //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
-      }
+          //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
+        }
 
       function decryptAES(pass, imgnum) { //Will be run when you select a user to decyrpt their images using their password.
         var id="img"+imgnum+"data";
@@ -275,16 +289,16 @@
         document.getElementById(id).value="";
       }
 
-      function encryptAll() { //Go through each user and encrypt the images they own with their password.
-        for(var i=0; i<4; i++){
-          for(var j=0; j<2; j++){
+        function encryptAll() { //Go through each user and encrypt the images they own with their password.
+          for(var i=0; i<4; i++){
+            for(var j=0; j<2; j++){
 
-            encryptAES(passwordAry[i], ownershipAry[i][j]);
-            //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+              encryptAES(passwordAry[i], ownershipAry[i][j]);
+              //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+            }
           }
+          alert("Encryption Finished"); 
         }
-        alert("Encryption Finished"); 
-      }
 
       function decryptUserImg(pass){ //decrypt images according to which user is "logged in"
         for (var i=0; i<4; i++){
