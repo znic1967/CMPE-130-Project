@@ -85,28 +85,12 @@
               encryptAll();
             });
 		      });
-		      // $("#user1").click(function(){
-		      //     $('#1').hide();
-		      //     $('#2').show();
-		      //     $('#3').hide();
-		      //     $('#4').hide();
-		      //     $('#5').show();
-		      //     $('#6').hide();
-		      //     $('#7').show();
-		      //     $('#8').hide();
-		      // });
-        // });
-		    //   $("#user2").click(function(){
-		    //       $('#1').show();
-		    //       $('#2').hide();
-		    //       $('#3').hide();
-		    //       $('#4').show();
-		    //       $('#5').hide();
-		    //       $('#6').show();
-		    //       $('#7').show();
-		    //       $('#8').hide();
-		    //   });
-		    // });
+          // $(document).ready(function(){
+          //   $("#user1").click(function(){
+          //     decryptImg();
+          //   });
+          // });
+
 
         $(document).ready(function(){
           $("#user1").click(function(){
@@ -239,7 +223,7 @@
         ctx_tb.drawImage(sImg, 0, 0);
       }
 
-      function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
+      function decryptAES(pass) { //Will be run when you select a user to decrypt their images using their password.
         var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById('ta').value, pass));
         for (var i=0; i<arr.length; i++) { arr[i]-=0; }
         pix=arr;
@@ -255,6 +239,12 @@
             encryptAES(passwordAry[i], ownershipAry[i][j]);
             //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
           }
+        }
+      }
+
+      function decryptImg(){ //Decrypt images belonging to user with their private password
+        for(var i=0; i<2; i++){
+          decryptAES(passwordAry[0]);
         }
       }
 
