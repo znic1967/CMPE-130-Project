@@ -28,13 +28,13 @@
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <h6 class="dropdown-header">Give Access</h6>
-          <li id="give1" value="other1" onclick="giveAccess(1);"><a href="#"></a></li>
-          <li id="give2" value="other2" onclick="giveAccess(2);"><a href="#"></a></li>
-          <li id="give3" value="other3" onclick="giveAccess(3);"><a href="#"></a></li>
+          <li id="give0" value="other1" onclick="giveAccess((currentUser+1)%4);"><a href="#"></a></li>
+          <li id="give1" value="other2" onclick="giveAccess((currentUser+2)%4);"><a href="#"></a></li>
+          <li id="give2" value="other3" onclick="giveAccess((currentUser+3)%4);"><a href="#"></a></li>
           <h6 class="dropdown-header">Revoke Access</h6>
-          <li id="revoke1" value="other1" onclick="revokeAccess(1);"><a href="#"></a></li>
-          <li id="revoke2" value="other2" onclick="revokeAccess(2);"><a href="#"></a></li>
-          <li id="revoke3" value="other3" onclick="revokeAccess(3);"><a href="#"></a></li>
+          <li id="revoke0" value="other1" onclick="revokeAccess((currentUser+1)%4);"><a href="#"></a></li>
+          <li id="revoke1" value="other2" onclick="revokeAccess((currentUser+2)%4);"><a href="#"></a></li>
+          <li id="revoke2" value="other3" onclick="revokeAccess((currentUser+3)%4);"><a href="#"></a></li>
 
         </ul>
       </div>
@@ -133,7 +133,8 @@
 
             $( "#userLi" ).show();
             $( "#logout" ).show();
-            showOptions();
+            showOptions(currentUser);
+            
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
                 decryptUserImg(passwordAry[i]);
@@ -141,26 +142,29 @@
             }
           });
           $("#user2").click(function(){
-            encryptAll();
-            currentUser=1; 
+            encryptAll();  
+            currentUser=1;
             document.getElementById("currentUser").innerHTML = currentUser+1;
+
             $( "#userLi" ).show();
             $( "#logout" ).show();
-            showOptions();
+            showOptions(currentUser);
+            
              for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
                 decryptUserImg(passwordAry[i]);
               }
-            }           
+            }             
           });
           $("#user3").click(function(){
             encryptAll();
             currentUser =2; 
             document.getElementById("currentUser").innerHTML = currentUser+1;
-
+            
             $( "#userLi" ).show();
-            $( "#logout" ).show();
-            showOptions();   
+            $( "#logout" ).show();          
+            showOptions(currentUser);   
+            
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
                 decryptUserImg(passwordAry[i]);
@@ -174,8 +178,8 @@
 
             $( "#userLi" ).show();
             $( "#logout" ).show();
-
-            showOptions(); 
+            showOptions(currentUser); 
+            
             for(var i = 0; i < 4; i++){
               if(permissions[currentUser][i]){
                 decryptUserImg(passwordAry[i]);
@@ -291,24 +295,29 @@
           console.log(preview);
         }
 
-        function showOptions(){
-          if(currentUser ===""){}
+        function showOptions(user){
+          clearOptions();
+          var other = 0;
+          if(user === ""){}
           else{
-            var count=1;
-            for(var i=0; i<4; i++){
-              if(i == currentUser){
-                continue;
+            for(var i = 1; i < 4; i++){
+              console.log(i);
+              if(permissions[(i+user)%4][user]){
+                console.log((i+user)%4 + " revoke!");
+                document.getElementById("revoke"+other).innerHTML = "User " + ((i+user)%4 +1);
               }
               else{
-                if(permissions[i][currentUser]){
-                  document.getElementById("revoke"+count).innerHTML = "User " + (i+1);
-                }
-                else{
-                   document.getElementById("give"+count).innerHTML = "User " + (i+1);
-                } 
-                count++;
+                console.log((i+user)%4 + " give!");
+                document.getElementById("give"+other).innerHTML = "User " + ((i+user)%4 +1);
               }
+              other++;
             }
+          }
+        }
+        function clearOptions(){
+          for(var i=0; i<3; i++){
+            document.getElementById("revoke"+i).innerHTML = "";
+            document.getElementById("give"+i).innerHTML = "";
           }
         }
         function giveAccess(give){
@@ -316,8 +325,10 @@
             alert("You must sign in first!")
           }
           else{
-            permissions[(currentUser+give)%4][currentUser] = true;
+            permissions[give%4][currentUser] = true;
+            console.log(give%4+" "+currentUser);
             console.log(permissions[(currentUser+give)%4][currentUser]);
+            //document.getElementById("give"+give).innerHTML = "";
           }
         }
 
@@ -326,8 +337,10 @@
             alert("You must sign in first!")
           }
           else{
-            permissions[(currentUser+give)%4][currentUser] = false;
-            console.log(permissions[(currentUser+give)%4][currentUser]);
+            permissions[take%4][currentUser] = false;
+            console.log(take%4+" "+currentUser);
+            console.log(permissions[(currentUser+take)%4][currentUser]);
+            //document.getElementById("revoke"+take).innerHTML = "";
           }
         }
         
@@ -383,7 +396,7 @@
         var pix_str="pix"+imgnum;
         var pix_tb=eval(pix_str);
         var imgd_tb = eval("imgd"+imgnum);
-        console.log(pix_str);
+        //console.log(pix_str);
         // console.log(pix_tb);
         
 
