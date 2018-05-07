@@ -30,37 +30,37 @@
             <div class="col-sm">
               <canvas class="canV" id="img1" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 1">
+              <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
               
               <canvas class="canV" id="img5" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img5data" class="eData" name="encrypted" type="text" size="80" value="Image 5">
+              <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
             </div>
             <div class="col-sm">
               <canvas class="canV" id="img2" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img2data" class="eData" name="encrypted" type="text" size="80" value="Image 2">
+              <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
               <canvas class="canV" id="img6" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img6data" class="eData" name="encrypted" type="text" size="80" value="Image 6">
+              <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
             </div>
             <div class="col-sm">
               <canvas class="canV" id="img3" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img3data" class="eData" name="encrypted" type="text" size="80" value="Image 3">
+              <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
 
               <canvas class="canV" id="img7" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img7data" class="eData" name="encrypted" type="text" size="80" value="Image 7">
+              <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
             </div>
             <div class="col-sm">
               <canvas class="canV" id="img4" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img4data" class="eData" name="encrypted" type="text" size="80" value="Image 4">
+              <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
 
               <canvas class="canV" id="img8" width="250" height="250"></canvas>
               <h2>Encrypted Data</h2>
-              <input id="img8data" class="eData" name="encrypted" type="text" size="80" value="Image 8">
+              <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
             </div>
           </div>
     </div>
@@ -89,21 +89,25 @@
         });
          $(document).ready(function(){
           $("#user1").click(function(){
+            encryptAll();
             decryptUserImg(0);           
           });
         });
           $(document).ready(function(){
           $("#user2").click(function(){
+            encryptAll();
             decryptUserImg(1);  
           });
         });
            $(document).ready(function(){
           $("#user3").click(function(){
+            encryptAll();
             decryptUserImg(2);            
           });
         });
             $(document).ready(function(){
           $("#user4").click(function(){
+            encryptAll();
             decryptUserImg(3);            
           });
         });
@@ -140,7 +144,7 @@
       var height=250;
       var ctx1, ctx2, ctx3, ctx4,ctx5, ctx6, ctx7, ctx8;
       var imgd;
-      var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8;
+      var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8; //Image Data
       
       img1.onload = function() {
         ctx1 = document.getElementById('img1').getContext('2d');
@@ -225,9 +229,9 @@
 
       function canvasStringToArr(test) {
         var p=[];
-        for (var i=0; i<s.length; i+=3) {
+        for (var i=0; i<test.length; i+=3) {
           for (var j=0; j<3; j++) {
-            p.push(s.substring(i+j,i+j+1).charCodeAt());
+            p.push(test.substring(i+j,i+j+1).charCodeAt());
           } 
           p.push(255); // Hardcodes alpha to 255.
         }
@@ -256,13 +260,20 @@
 
       function decryptAES(pass, imgnum) { //Will be run when you select a user to decyrpt their images using their password.
         var id="img"+imgnum+"data";
+        var pix_str="pix"+imgnum;
+        var pix_tb=eval(pix_str);
+        console.log(pix_tb);
+        console.log(pix_str);
 
-        var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById('ta').value, pass));
+        var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById(id).value, pass));
         for (var i=0; i<arr.length; i++) { arr[i]-=0; }
-        pix=arr;
-        imgd.data=pix;
-        ctx.putImageData(imgd,0,0);
-        document.getElementById('ta').value="";
+        pix_tb=arr;
+        imgd.data=pix_tb;
+
+        var ctx_str="ctx"+imgnum;
+        var ctx_tb=eval(ctx_str);
+        ctx_tb.putImageData(imgd,0,0);
+        document.getElementById(id).value="";
       }
 
       function encryptAll() { //Go through each user and encrypt the images they own with their password.
