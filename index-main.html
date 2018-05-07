@@ -83,7 +83,7 @@
           [7,4]
         ];
         var passwordAry = ["u1p","u2p","u3p","u4p"];
-        var currentUser="";
+        var encrypted = [0,0,0,0,0,0,0,0];
 
 
         //encryptAll(); //Initialize all images to be encrypted
@@ -96,21 +96,26 @@
         });
            $(document).ready(function(){
           $("#user3").click(function(){
+            encryptAll();
             decryptUserImg(passwordAry[2]);            
           });
         });
          $(document).ready(function(){
           $("#user1").click(function(){
-            decryptUserImg(passwordAry[0]);           
+            encryptAll();
+            decryptUserImg(passwordAry[0]);   
+            currentUser=1;        
           });
         });
           $(document).ready(function(){
           $("#user2").click(function(){
+            encryptAll();
             decryptUserImg(passwordAry[1]);  
           });
         });
             $(document).ready(function(){
           $("#user4").click(function(){
+            encryptAll();
             decryptUserImg(passwordAry[3]);            
           });
         });
@@ -228,7 +233,6 @@
         //Important Functions ============================================================================
       function canvasArrToString(pix_tb) {
         var str="";
-        console.log("test");
         //var pix_in=pix1;
         // Removes alpha to save space.
         for (var i=0; i<pix_tb.length; i+=4) {
@@ -290,18 +294,24 @@
         var ctx_tb=eval(ctx_str);
         ctx_tb.putImageData(imgd_tb,0,0);
         document.getElementById(id).value="";
+        encrypted[imgnum-1]=0;
+        console.log(encrypted);
       }
 
         function encryptAll() { //Go through each user and encrypt the images they own with their password.
+         // console.log("Start: "+encrypted);
           for(var i=0; i<4; i++){
             for(var j=0; j<2; j++){
-
-              encryptAES(passwordAry[i], ownershipAry[i][j]);
+            if (encrypted[(ownershipAry[i][j])-1]==0){
+                encryptAES(passwordAry[i], ownershipAry[i][j]);
+                encrypted[(ownershipAry[i][j])-1]=1; //Sets encrypted flag for the image
               //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
             }
-          }
-          alert("Encryption Finished"); 
+            console.log(encrypted);
+          } 
         }
+        //alert("Encryption Finished");
+      }
       function decryptUserImg(pass){ //decrypt images according to which user is "logged in"
         for (var i=0; i<4; i++){
           for(var j=0; j<2; j++){
