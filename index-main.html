@@ -20,20 +20,21 @@
 			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
 			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
 			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
-      <br> 
-      <li class="list-inline-item"><a id="give" href="#"></a></li>
+      <br>
+      <li class="list-inline-item"><a id="showUser" href="#">Current User:</a></li>
+      <li class="list-inline-item"><a id="logout" href="#">Logout</a></li>
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select User
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <h6 class="dropdown-header">Give Access</h6>
           <li id="give1" value="other1" onclick="giveAccess(1);"><a href="#"></a></li>
-          <li id="give2" value="other2" onclick="giveAccess(2);><a href="#"></a></li>
-          <li id="give3" value="other3" onclick="giveAccess(3);><a href="#"></a></li>
+          <li id="give2" value="other2" onclick="giveAccess(2);"><a href="#"></a></li>
+          <li id="give3" value="other3" onclick="giveAccess(3);"><a href="#"></a></li>
           <h6 class="dropdown-header">Revoke Access</h6>
-          <li id="revoke1" value="other1"><a href="#"></a></li>
-          <li id="revoke2" value="other2"><a href="#"></a></li>
-          <li id="revoke3" value="other3"><a href="#"></a></li>
+          <li id="revoke1" value="other1" onclick="revokeAccess(1);"><a href="#"></a></li>
+          <li id="revoke2" value="other2" onclick="revokeAccess(2);"><a href="#"></a></li>
+          <li id="revoke3" value="other3" onclick="revokeAccess(3);"><a href="#"></a></li>
 
         </ul>
       </div>
@@ -301,9 +302,13 @@
           }
         }
 
-        function revokeAccess(){
+        function revokeAccess(take){
           if(currentUser === ""){
             alert("You must sign in first!")
+          }
+          else{
+            permissions[(currentUser+give)%4][currentUser] = false;
+            console.log(permissions[(currentUser+give)%4][currentUser]);
           }
         }
         

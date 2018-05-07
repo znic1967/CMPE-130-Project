@@ -67,6 +67,4 @@ input.dButton{
 	padding: 10px;
 }
 
-.dropdown{
-	
-}
+li { cursor: pointer; }
