@@ -226,29 +226,30 @@
 
 
         //Important Functions ============================================================================
-        function canvasArrToString(pix_tb) {
-          var str="";
-          //console.log("test");
-          //var pix_in=pix1;
-          // Removes alpha to save space.
-          for (var i=0; i<pix_tb.length; i+=4) {
-            str+=(String.fromCharCode(pix_tb[i]) 
-                + String.fromCharCode(pix_tb[i+1]) 
-                + String.fromCharCode(pix_tb[i+2]));
-          }
-          return str;
+      function canvasArrToString(pix_tb) {
+        var str="";
+        console.log("test");
+        //var pix_in=pix1;
+        // Removes alpha to save space.
+        for (var i=0; i<pix_tb.length; i+=4) {
+          str+=(String.fromCharCode(pix_tb[i]) 
+              + String.fromCharCode(pix_tb[i+1]) 
+              + String.fromCharCode(pix_tb[i+2]));
         }
+        return str;
+      }
 
-        function canvasStringToArr(test) {
-          var p=[];
-          for (var i=0; i<s.length; i+=3) {
-            for (var j=0; j<3; j++) {
-              p.push(s.substring(i+j,i+j+1).charCodeAt());
-            } 
-            p.push(255); // Hardcodes alpha to 255.
-          }
-          return p;
+      function canvasStringToArr(test) {
+        var p=[];
+        for (var i=0; i<test.length; i+=3) {
+          for (var j=0; j<3; j++) {
+            p.push(test.substring(i+j,i+j+1).charCodeAt());
+          } 
+          p.push(255); // Hardcodes alpha to 255.
         }
+        return p;
+      }
+
 
         function encryptAES(pass, imgnum) {
 
