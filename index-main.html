@@ -87,27 +87,23 @@
             encryptAll();          
           });
         });
+           $(document).ready(function(){
+          $("#user3").click(function(){
+            decryptUserImg(passwordAry[2]);            
+          });
+        });
          $(document).ready(function(){
           $("#user1").click(function(){
-            encryptAll();
             decryptUserImg(passwordAry[0]);           
           });
         });
           $(document).ready(function(){
           $("#user2").click(function(){
-            encryptAll();
             decryptUserImg(passwordAry[1]);  
-          });
-        });
-           $(document).ready(function(){
-          $("#user3").click(function(){
-            encryptAll();
-            decryptUserImg(passwordAry[2]);            
           });
         });
             $(document).ready(function(){
           $("#user4").click(function(){
-            encryptAll();
             decryptUserImg(passwordAry[3]);            
           });
         });
@@ -263,7 +259,7 @@
         var pix_str="pix"+imgnum;
         var pix_tb=eval(pix_str);
         var imgd_tb = eval("imgd"+imgnum);
-        // console.log(pix_str);
+        console.log(pix_str);
         // console.log(pix_tb);
         
 
@@ -271,7 +267,7 @@
         for (var i=0; i<arr.length; i++) { arr[i]-=0; }
         pix_tb=arr;
         imgd_tb.data=pix_tb;
-        console.log(imgd_tb.data);
+        //console.log(imgd_tb.data);
 
         var ctx_str="ctx"+imgnum;
         var ctx_tb=eval(ctx_str);
@@ -293,7 +289,12 @@
       function decryptUserImg(pass){ //decrypt images according to which user is "logged in"
         for (var i=0; i<4; i++){
           for(var j=0; j<2; j++){
-            decryptAES(pass,ownershipAry[i][j]);
+            try{
+              decryptAES(pass,ownershipAry[i][j]);
+            }
+            catch(err){
+              continue;
+            }
           }
         }
       }
