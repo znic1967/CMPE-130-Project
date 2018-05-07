@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="bootstrap.css">
 		<link href = "main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="2.0.0-crypto-sha1-hmac-pbkdf2-ofb-aes.js"></script>
 	</head>
 	<body>
 		<h1>
@@ -13,7 +15,7 @@
 		</h1>
 
 		<ul class="list-inline">
-			<li class="list-inline-item"><a id="all" href="#">Show All</a></li>
+			<li class="list-inline-item"><a id="all" href="#">Encrypt All</a></li>
 			<li class="list-inline-item"><a id="user1" href="#">User 1</a></li>
 			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
 			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
@@ -25,201 +27,293 @@
     </form> -->
 		<div class="container-fluid">
 			<div class="row">
-        		<div class="col-sm">
-        			<canvas class="canV" id="img1" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 1">
-        			
-              <canvas class="canV" id="img5" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img5data" class="eData" name="encrypted" type="text" size="80" value="Image 5">
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img2" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 2">
+    		<div class="col-sm">
+    			<canvas class="canV" id="img1" width="250" height="250"></canvas>
+          <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
+          <input class="dButton" type="button" onclick="viewData(1);" value="View Encrypted Data">
+    			
+          <canvas class="canV" id="img5" width="250" height="250"></canvas>
+          <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
+          <input class="dButton" type="button" onclick="viewData(5);" value="View Encrypted Data">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img2" width="250" height="250"></canvas>
+          <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
+          <input class="dButton" type="button" onclick="viewData(2);" value="View Encrypted Data">
 
-        			<canvas class="canV" id="img6" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 6">
+    			<canvas class="canV" id="img6" width="250" height="250"></canvas>
+          <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
+          <input class="dButton" type="button" onclick="viewData(6);" value="View Encrypted Data">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img3" width="250" height="250"></canvas>
+          <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
+          <input class="dButton" type="button" onclick="viewData(3);" value="View Encrypted Data">
 
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img3" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 3">
+    			<canvas class="canV" id="img7" width="250" height="250"></canvas>
+          <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
+          <input class="dButton" type="button" onclick="viewData(7);" value="View Encrypted Data">
+    		</div>
+    		<div class="col-sm">
+    			<canvas class="canV" id="img4" width="250" height="250"></canvas>
+          <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
+          <input class="dButton" type="button" onclick="viewData(4);" value="View Encrypted Data">
 
-        			<canvas class="canV" id="img7" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 7">
-        		</div>
-        		<div class="col-sm">
-        			<canvas class="canV" id="img4" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 4">
-
-              <canvas class="canV" id="img8" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="text" size="80" value="Image 8">
-        		</div>
-        	</div>
+          <canvas class="canV" id="img8" width="250" height="250"></canvas>
+          <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
+          <input class="dButton" type="button" onclick="viewData(8);" value="View Encrypted Data">
+    		</div>
+    	</div>
+      <div class="row">
+        <div class="col-sm">
+          <h2 id="eDataHeading"></h2>
+          <p id="eDataOut"></p>
+        </div>
+      </div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	    <script type="text/javascript" src="bootstrap.js"></script>
 	    
 	    <script>
-        var user1pass="u1p";
-        var own1=[1,4,6];
-        var own2=[2,3];
-        var own3=[5];
-        var own4=[7,8];
+        var ownershipAry = [
+          [1,2],
+          [5,8],
+          [3,6],
+          [7,4]
+        ];
+        var passwordAry = ["u1p","u2p","u3p","u4p"];
         var currentUser="";
 
-	      	// $(document).ready(function(){
-	      	//   $("#all").click(function(){
-		      //     $('#1').show();
-		      //     $('#2').show();
-		      //     $('#3').show();
-		      //     $('#4').show();
-		      //     $('#5').show();
-		      //     $('#6').show();
-		      //     $('#7').show();
-		      //     $('#8').show();
-		      // });
-		      // $("#user1").click(function(){
-		      //     $('#1').hide();
-		      //     $('#2').show();
-		      //     $('#3').hide();
-		      //     $('#4').hide();
-		      //     $('#5').show();
-		      //     $('#6').hide();
-		      //     $('#7').show();
-		      //     $('#8').hide();
-		      // });
-        // });
-		    //   $("#user2").click(function(){
-		    //       $('#1').show();
-		    //       $('#2').hide();
-		    //       $('#3').hide();
-		    //       $('#4').show();
-		    //       $('#5').hide();
-		    //       $('#6').show();
-		    //       $('#7').show();
-		    //       $('#8').hide();
-		    //   });
-		    // });
+
+        //encryptAll(); //Initialize all images to be encrypted
+
 
         $(document).ready(function(){
-          $("#user1").click(function(){
-              currentUser="u1";
+          $("#all").click(function(){
+            encryptAll();          
           });
         });
-      var img1 = new Image();
-      img1.src = 'img/user_images/1.jpg';
+           $(document).ready(function(){
+          $("#user3").click(function(){
+            decryptUserImg(passwordAry[2]);            
+          });
+        });
+         $(document).ready(function(){
+          $("#user1").click(function(){
+            decryptUserImg(passwordAry[0]);           
+          });
+        });
+          $(document).ready(function(){
+          $("#user2").click(function(){
+            decryptUserImg(passwordAry[1]);  
+          });
+        });
+            $(document).ready(function(){
+          $("#user4").click(function(){
+            decryptUserImg(passwordAry[3]);            
+          });
+        });
 
-      var img2 = new Image();
-      img2.src = 'img/user_images/2.jpg';
+        var img1 = new Image();
+        img1.src = 'img/user_images/1.jpg';
 
-      var img3 = new Image();
-      img3.src = 'img/user_images/3.jpg';
+        var img2 = new Image();
+        img2.src = 'img/user_images/2.jpg';
 
-      var img4 = new Image();
-      img4.src = 'img/user_images/4.jpg';
+        var img3 = new Image();
+        img3.src = 'img/user_images/3.jpg';
 
-      var img5 = new Image();
-      img5.src = 'img/user_images/5.jpg';
+        var img4 = new Image();
+        img4.src = 'img/user_images/4.jpg';
 
-      var img6 = new Image();
-      img6.src = 'img/user_images/6.jpg';
+        var img5 = new Image();
+        img5.src = 'img/user_images/5.jpg';
 
-      var img7 = new Image();
-      img7.src = 'img/user_images/7.jpg';
+        var img6 = new Image();
+        img6.src = 'img/user_images/6.jpg';
 
-      var img8 = new Image();
-      img8.src = 'img/user_images/8.jpg';
+        var img7 = new Image();
+        img7.src = 'img/user_images/7.jpg';
 
-      var sImg = new Image();
-      sImg.src = 'img/scrambled.png';
+        var img8 = new Image();
+        img8.src = 'img/user_images/8.jpg';
 
-      var width=250;
-      var height=250;
-      var ctx, imgd, pix1, pix2, pix3;
-      
+        var sImg = new Image();
+        sImg.src = 'img/scrambled.png';
+
+        var width=250;
+        var height=250;
+        var ctx1, ctx2, ctx3, ctx4,ctx5, ctx6, ctx7, ctx8;
+        var imgd1,imgd2,imgd3,imgd4,imgd5,imgd6,imgd7,imgd8;
+        var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8;
       img1.onload = function() {
-        ctx = document.getElementById('img1').getContext('2d');
-        ctx.drawImage(img1,0,0,250,250);
+        ctx1 = document.getElementById('img1').getContext('2d');
+        ctx1.drawImage(img1,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
-        pix1 = imgd.data;
+        imgd1 = ctx1.getImageData(0,0,width,height);
+        pix1 = imgd1.data;
+        //console.log("Trying to reload");
+
       }
-      img2.onload = function() {
-        ctx = document.getElementById('img2').getContext('2d');
-        ctx.drawImage(img2,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
-        pix2 = imgd.data;
+      img2.onload = function() {
+        ctx2 = document.getElementById('img2').getContext('2d');
+        ctx2.drawImage(img2,0,0,250,250);
+
+        imgd2 = ctx2.getImageData(0,0,width,height);
+        pix2 = imgd2.data;
       }
       img3.onload = function() {
-        ctx = document.getElementById('img3').getContext('2d');
-        ctx.drawImage(img3,0,0,250,250);
+        ctx3 = document.getElementById('img3').getContext('2d');
+        ctx3.drawImage(img3,0,0,250,250);
 
-        imgd = ctx.getImageData(0,0,width,height);
-        pix3 = imgd.data;
+        imgd3 = ctx3.getImageData(0,0,width,height);
+        pix3 = imgd3.data;
       }
-      function clear_canvas() {
-        ctx.clearRect(0,0,160,120);
-        imgd.data=[];
+      img4.onload = function() {
+        ctx4 = document.getElementById('img4').getContext('2d');
+        ctx4.drawImage(img4,0,0,250,250);
+
+        imgd4 = ctx4.getImageData(0,0,width,height);
+        pix4 = imgd4.data;
+      }
+      img5.onload = function() {
+        ctx5 = document.getElementById('img5').getContext('2d');
+        ctx5.drawImage(img5,0,0,250,250);
+
+        imgd5 = ctx5.getImageData(0,0,width,height);
+        pix5 = imgd5.data;
+      }
+      img6.onload = function() {
+        ctx6 = document.getElementById('img6').getContext('2d');
+        ctx6.drawImage(img6,0,0,250,250);
+
+        imgd6 = ctx6.getImageData(0,0,width,height);
+        pix6 = imgd6.data;
+      }
+      
+      img7.onload = function() {
+        ctx7 = document.getElementById('img7').getContext('2d');
+        ctx7.drawImage(img7,0,0,250,250);
+
+        imgd7 = ctx7.getImageData(0,0,width,height);
+        pix7 = imgd7.data;
+      }
+      img8.onload = function() {
+        ctx8 = document.getElementById('img8').getContext('2d');
+        ctx8.drawImage(img8,0,0,250,250);
+
+        imgd8 = ctx8.getImageData(0,0,width,height);
+        pix8 = imgd8.data;
       }
 
-      function canvasArrToString(a) {
-        var s="";
-        // Removes alpha to save space.
-        for (var i=0; i<pix.length; i+=4) {
-          s+=(String.fromCharCode(pix[i]) 
-              + String.fromCharCode(pix[i+1]) 
-              + String.fromCharCode(pix[i+2]));
+        function clear_canvas(ctx_num) {
+          ctx.clearRect(0,0,160,120);
+          imgd.data=[];
         }
-        return s;
+ 
+        function viewData(imgnum){
+          var id="img"+imgnum+"data";
+          var data=document.getElementById(id).value;
+          var preview=data.slice(0,2000);
+
+          document.getElementById("eDataHeading").innerHTML = "First 2000 Characters of Encrypted Data for Image "+imgnum;
+          document.getElementById("eDataOut").innerHTML = preview;
+
+          console.log(preview);
+        }
+
+
+        //Important Functions ============================================================================
+      function canvasArrToString(pix_tb) {
+        var str="";
+        console.log("test");
+        //var pix_in=pix1;
+        // Removes alpha to save space.
+        for (var i=0; i<pix_tb.length; i+=4) {
+          str+=(String.fromCharCode(pix_tb[i]) 
+              + String.fromCharCode(pix_tb[i+1]) 
+              + String.fromCharCode(pix_tb[i+2]));
+        }
+        return str;
       }
 
-      function canvasStringToArr(s) {
+      function canvasStringToArr(test) {
         var p=[];
-        for (var i=0; i<s.length; i+=3) {
+        for (var i=0; i<test.length; i+=3) {
           for (var j=0; j<3; j++) {
-            p.push(s.substring(i+j,i+j+1).charCodeAt());
+            p.push(test.substring(i+j,i+j+1).charCodeAt());
           } 
           p.push(255); // Hardcodes alpha to 255.
         }
         return p;
       }
 
-      function encryptAES(pass, imgnum) {
-        var id=imgnum+".jpg";
-        var s=canvasArrToString(pix);
-        var encrypted = Krypto.AES.encrypt(s, pass);
-        document.getElementById(id).value=encrypted;
 
-        ctx.drawImage(sImg, 0, 0);
-      }
+        function encryptAES(pass, imgnum) {
 
-      function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
-        var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById('ta').value, pass));
+          //console.log(pix1);
+          var id="img"+imgnum+"data";
+
+          var pix_str="pix"+imgnum;
+          var pix_tb=eval(pix_str);
+
+          //console.log(pix_tb);
+          var str=canvasArrToString(pix_tb);
+          var encrypted = Krypto.AES.encrypt(str, pass);
+          document.getElementById(id).value=encrypted;
+
+          var ctx_str="ctx"+imgnum;
+          var ctx_tb=eval(ctx_str);
+          ctx_tb.drawImage(sImg, 0, 0);
+
+          //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
+        }
+
+      function decryptAES(pass, imgnum) { //Will be run when you select a user to decyrpt their images using their password.
+        var id="img"+imgnum+"data";
+        var pix_str="pix"+imgnum;
+        var pix_tb=eval(pix_str);
+        var imgd_tb = eval("imgd"+imgnum);
+        console.log(pix_str);
+        // console.log(pix_tb);
+        
+
+        var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById(id).value, pass));
         for (var i=0; i<arr.length; i++) { arr[i]-=0; }
-        pix=arr;
-        imgd.data=pix;
-        ctx.putImageData(imgd,0,0);
-        document.getElementById('ta').value="";
+        pix_tb=arr;
+        imgd_tb.data=pix_tb;
+        //console.log(imgd_tb.data);
+
+        var ctx_str="ctx"+imgnum;
+        var ctx_tb=eval(ctx_str);
+        ctx_tb.putImageData(imgd_tb,0,0);
+        document.getElementById(id).value="";
       }
 
-      // function encryptAll() { //Go through each user and encrypt the images they own with their password.
-      //   for(var i=1; i<=4; i++){
-      //     var current="own"+i; //Should be name of array of owned images
-      //     for(var j=0; current.length(); j++{
-      //       encryptAES(u1p,current[j]);
-      //     }
-      //   }
-      // }
+        function encryptAll() { //Go through each user and encrypt the images they own with their password.
+          for(var i=0; i<4; i++){
+            for(var j=0; j<2; j++){
+
+              encryptAES(passwordAry[i], ownershipAry[i][j]);
+              //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+            }
+          }
+          alert("Encryption Finished"); 
+        }
+      function decryptUserImg(pass){ //decrypt images according to which user is "logged in"
+        for (var i=0; i<4; i++){
+          for(var j=0; j<2; j++){
+            try{
+              decryptAES(pass,ownershipAry[i][j]);
+            }
+            catch(err){
+              continue;
+            }
+          }
+        }
+      }
 
     </script>
 	</body>
