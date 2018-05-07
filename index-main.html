@@ -87,170 +87,170 @@
             encryptAll();          
           });
         });
-      var img1 = new Image();
-      img1.src = 'img/user_images/1.jpg';
+        var img1 = new Image();
+        img1.src = 'img/user_images/1.jpg';
 
-      var img2 = new Image();
-      img2.src = 'img/user_images/2.jpg';
+        var img2 = new Image();
+        img2.src = 'img/user_images/2.jpg';
 
-      var img3 = new Image();
-      img3.src = 'img/user_images/3.jpg';
+        var img3 = new Image();
+        img3.src = 'img/user_images/3.jpg';
 
-      var img4 = new Image();
-      img4.src = 'img/user_images/4.jpg';
+        var img4 = new Image();
+        img4.src = 'img/user_images/4.jpg';
 
-      var img5 = new Image();
-      img5.src = 'img/user_images/5.jpg';
+        var img5 = new Image();
+        img5.src = 'img/user_images/5.jpg';
 
-      var img6 = new Image();
-      img6.src = 'img/user_images/6.jpg';
+        var img6 = new Image();
+        img6.src = 'img/user_images/6.jpg';
 
-      var img7 = new Image();
-      img7.src = 'img/user_images/7.jpg';
+        var img7 = new Image();
+        img7.src = 'img/user_images/7.jpg';
 
-      var img8 = new Image();
-      img8.src = 'img/user_images/8.jpg';
+        var img8 = new Image();
+        img8.src = 'img/user_images/8.jpg';
 
-      var sImg = new Image();
-      sImg.src = 'img/scrambled.png';
+        var sImg = new Image();
+        sImg.src = 'img/scrambled.png';
 
-      var width=250;
-      var height=250;
-      var ctx1, ctx2, ctx3, ctx4,ctx5, ctx6, ctx7, ctx8;
-      var imgd;
-      var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8;
-      
-      img1.onload = function() {
-        ctx1 = document.getElementById('img1').getContext('2d');
-        ctx1.drawImage(img1,0,0,250,250);
+        var width=250;
+        var height=250;
+        var ctx1, ctx2, ctx3, ctx4,ctx5, ctx6, ctx7, ctx8;
+        var imgd;
+        var pix1, pix2, pix3,pix4, pix5, pix6, pix7, pix8;
+        
+        img1.onload = function() {
+          ctx1 = document.getElementById('img1').getContext('2d');
+          ctx1.drawImage(img1,0,0,250,250);
 
-        imgd = ctx1.getImageData(0,0,width,height);
-        pix1 = imgd.data;
-        //console.log("Trying to reload");
+          imgd = ctx1.getImageData(0,0,width,height);
+          pix1 = imgd.data;
+          //console.log("Trying to reload");
 
-      }
-
-      img2.onload = function() {
-        ctx2 = document.getElementById('img2').getContext('2d');
-        ctx2.drawImage(img2,0,0,250,250);
-
-        imgd = ctx2.getImageData(0,0,width,height);
-        pix2 = imgd.data;
-      }
-      img3.onload = function() {
-        ctx3 = document.getElementById('img3').getContext('2d');
-        ctx3.drawImage(img3,0,0,250,250);
-
-        imgd = ctx3.getImageData(0,0,width,height);
-        pix3 = imgd.data;
-      }
-      img4.onload = function() {
-        ctx4 = document.getElementById('img4').getContext('2d');
-        ctx4.drawImage(img4,0,0,250,250);
-
-        imgd = ctx4.getImageData(0,0,width,height);
-        pix4 = imgd.data;
-      }
-      img5.onload = function() {
-        ctx5 = document.getElementById('img5').getContext('2d');
-        ctx5.drawImage(img5,0,0,250,250);
-
-        imgd = ctx5.getImageData(0,0,width,height);
-        pix5 = imgd.data;
-      }
-      img6.onload = function() {
-        ctx6 = document.getElementById('img6').getContext('2d');
-        ctx6.drawImage(img6,0,0,250,250);
-
-        imgd = ctx6.getImageData(0,0,width,height);
-        pix6 = imgd.data;
-      }
-      
-      img7.onload = function() {
-        ctx7 = document.getElementById('img7').getContext('2d');
-        ctx7.drawImage(img7,0,0,250,250);
-
-        imgd = ctx7.getImageData(0,0,width,height);
-        pix7 = imgd.data;
-      }
-      img8.onload = function() {
-        ctx8 = document.getElementById('img8').getContext('2d');
-        ctx8.drawImage(img8,0,0,250,250);
-
-        imgd = ctx8.getImageData(0,0,width,height);
-        pix8 = imgd.data;
-      }
-
-      function clear_canvas(ctx_num) {
-        ctx.clearRect(0,0,160,120);
-        imgd.data=[];
-      }
-
-
-      //Important Functions ============================================================================
-      function canvasArrToString(pix_tb) {
-        var str="";
-        console.log("test");
-        //var pix_in=pix1;
-        // Removes alpha to save space.
-        for (var i=0; i<pix_tb.length; i+=4) {
-          str+=(String.fromCharCode(pix_tb[i]) 
-              + String.fromCharCode(pix_tb[i+1]) 
-              + String.fromCharCode(pix_tb[i+2]));
         }
-        return str;
-      }
 
-      function canvasStringToArr(test) {
-        var p=[];
-        for (var i=0; i<s.length; i+=3) {
-          for (var j=0; j<3; j++) {
-            p.push(s.substring(i+j,i+j+1).charCodeAt());
-          } 
-          p.push(255); // Hardcodes alpha to 255.
+        img2.onload = function() {
+          ctx2 = document.getElementById('img2').getContext('2d');
+          ctx2.drawImage(img2,0,0,250,250);
+
+          imgd = ctx2.getImageData(0,0,width,height);
+          pix2 = imgd.data;
         }
-        return p;
-      }
+        img3.onload = function() {
+          ctx3 = document.getElementById('img3').getContext('2d');
+          ctx3.drawImage(img3,0,0,250,250);
 
-      function encryptAES(pass, imgnum) {
+          imgd = ctx3.getImageData(0,0,width,height);
+          pix3 = imgd.data;
+        }
+        img4.onload = function() {
+          ctx4 = document.getElementById('img4').getContext('2d');
+          ctx4.drawImage(img4,0,0,250,250);
 
-        //console.log(pix1);
-        var id="img"+imgnum+"data";
+          imgd = ctx4.getImageData(0,0,width,height);
+          pix4 = imgd.data;
+        }
+        img5.onload = function() {
+          ctx5 = document.getElementById('img5').getContext('2d');
+          ctx5.drawImage(img5,0,0,250,250);
 
-        var pix_str="pix"+imgnum;
-        var pix_tb=eval(pix_str);
+          imgd = ctx5.getImageData(0,0,width,height);
+          pix5 = imgd.data;
+        }
+        img6.onload = function() {
+          ctx6 = document.getElementById('img6').getContext('2d');
+          ctx6.drawImage(img6,0,0,250,250);
 
-        //console.log(pix_tb);
-        var str=canvasArrToString(pix_tb);
-        var encrypted = Krypto.AES.encrypt(str, pass);
-        document.getElementById(id).value=encrypted;
+          imgd = ctx6.getImageData(0,0,width,height);
+          pix6 = imgd.data;
+        }
+        
+        img7.onload = function() {
+          ctx7 = document.getElementById('img7').getContext('2d');
+          ctx7.drawImage(img7,0,0,250,250);
 
-        var ctx_str="ctx"+imgnum;
-        var ctx_tb=eval(ctx_str);
-        ctx_tb.drawImage(sImg, 0, 0);
+          imgd = ctx7.getImageData(0,0,width,height);
+          pix7 = imgd.data;
+        }
+        img8.onload = function() {
+          ctx8 = document.getElementById('img8').getContext('2d');
+          ctx8.drawImage(img8,0,0,250,250);
 
-        //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
-      }
+          imgd = ctx8.getImageData(0,0,width,height);
+          pix8 = imgd.data;
+        }
 
-      function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
-        var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById('ta').value, pass));
-        for (var i=0; i<arr.length; i++) { arr[i]-=0; }
-        pix=arr;
-        imgd.data=pix;
-        ctx.putImageData(imgd,0,0);
-        document.getElementById('ta').value="";
-      }
+        function clear_canvas(ctx_num) {
+          ctx.clearRect(0,0,160,120);
+          imgd.data=[];
+        }
 
-      function encryptAll() { //Go through each user and encrypt the images they own with their password.
-        for(var i=0; i<4; i++){
-          for(var j=0; j<2; j++){
 
-            encryptAES(passwordAry[i], ownershipAry[i][j]);
-            //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+        //Important Functions ============================================================================
+        function canvasArrToString(pix_tb) {
+          var str="";
+          //console.log("test");
+          //var pix_in=pix1;
+          // Removes alpha to save space.
+          for (var i=0; i<pix_tb.length; i+=4) {
+            str+=(String.fromCharCode(pix_tb[i]) 
+                + String.fromCharCode(pix_tb[i+1]) 
+                + String.fromCharCode(pix_tb[i+2]));
           }
+          return str;
         }
-        alert("Encryption Finished"); 
-      }
+
+        function canvasStringToArr(test) {
+          var p=[];
+          for (var i=0; i<s.length; i+=3) {
+            for (var j=0; j<3; j++) {
+              p.push(s.substring(i+j,i+j+1).charCodeAt());
+            } 
+            p.push(255); // Hardcodes alpha to 255.
+          }
+          return p;
+        }
+
+        function encryptAES(pass, imgnum) {
+
+          //console.log(pix1);
+          var id="img"+imgnum+"data";
+
+          var pix_str="pix"+imgnum;
+          var pix_tb=eval(pix_str);
+
+          //console.log(pix_tb);
+          var str=canvasArrToString(pix_tb);
+          var encrypted = Krypto.AES.encrypt(str, pass);
+          document.getElementById(id).value=encrypted;
+
+          var ctx_str="ctx"+imgnum;
+          var ctx_tb=eval(ctx_str);
+          ctx_tb.drawImage(sImg, 0, 0);
+
+          //document.getElementById('chars').innerHTML=""+encrypted.length+" characters.";
+        }
+
+        function decryptAES(pass) { //Will be run when you select a user to decyrpt their images using their password.
+          var arr=canvasStringToArr(Krypto.AES.decrypt(document.getElementById('ta').value, pass));
+          for (var i=0; i<arr.length; i++) { arr[i]-=0; }
+          pix=arr;
+          imgd.data=pix;
+          ctx.putImageData(imgd,0,0);
+          document.getElementById('ta').value="";
+        }
+
+        function encryptAll() { //Go through each user and encrypt the images they own with their password.
+          for(var i=0; i<4; i++){
+            for(var j=0; j<2; j++){
+
+              encryptAES(passwordAry[i], ownershipAry[i][j]);
+              //console.log("User"+(i+1)+": "+ownershipAry[i][j]);
+            }
+          }
+          alert("Encryption Finished"); 
+        }
 
     </script>
 	</body>
