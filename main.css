@@ -34,6 +34,13 @@ li a{
 	font-size: 20px;
 	font-family: Helvetica;
 }
+li h2{
+	color: white;
+	display: inline-block;
+	font-size: 20px;
+	font-family: Helvetica;
+	margin-right: 10px;
+}
 
 input.eData {
 	width:80%;
