@@ -20,47 +20,71 @@
 			<li class="list-inline-item"><a id="user2" href="#">User 2</a></li>
 			<li class="list-inline-item"><a id="user3" href="#">User 3</a></li>
 			<li class="list-inline-item"><a id="user4" href="#">User 4</a></li>
-		</ul>
+      <br> 
+      <li class="list-inline-item"><a id="give" href="#"></a></li>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select User
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <h6 class="dropdown-header">Give Access</h6>
+          <li id="give1" value="other1" onclick="giveAccess(1);"><a href="#"></a></li>
+          <li id="give2" value="other2" onclick="giveAccess(2);><a href="#"></a></li>
+          <li id="give3" value="other3" onclick="giveAccess(3);><a href="#"></a></li>
+          <h6 class="dropdown-header">Revoke Access</h6>
+          <li id="revoke1" value="other1"><a href="#"></a></li>
+          <li id="revoke2" value="other2"><a href="#"></a></li>
+          <li id="revoke3" value="other3"><a href="#"></a></li>
 
+        </ul>
+      </div>
+      <li class="list-inline-item"><a id="revoke" href="#"></a></li>
+		</ul>
 
     <div class="container-fluid">
       <div class="row">
-            <div class="col-sm">
-              <canvas class="canV" id="img1" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
-              
-              <canvas class="canV" id="img5" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
-            </div>
-            <div class="col-sm">
-              <canvas class="canV" id="img2" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
-              <canvas class="canV" id="img6" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
-            </div>
-            <div class="col-sm">
-              <canvas class="canV" id="img3" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
+        <div class="col-sm">
+          <canvas class="canV" id="img1" width="250" height="250"></canvas>
+          <input id="img1data" class="eData" name="encrypted" type="hidden" size="80" value="Image 1">
+          <input class="dButton" type="button" onclick="viewData(1);" value="View Encrypted Data">
+          
+          <canvas class="canV" id="img5" width="250" height="250"></canvas>
+          <input id="img5data" class="eData" name="encrypted" type="hidden" size="80" value="Image 5">
+          <input class="dButton" type="button" onclick="viewData(5);" value="View Encrypted Data">
+        </div>
+        <div class="col-sm">
+          <canvas class="canV" id="img2" width="250" height="250"></canvas>
+          <input id="img2data" class="eData" name="encrypted" type="hidden" size="80" value="Image 2">
+          <input class="dButton" type="button" onclick="viewData(2);" value="View Encrypted Data">
 
-              <canvas class="canV" id="img7" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
-            </div>
-            <div class="col-sm">
-              <canvas class="canV" id="img4" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
+          <canvas class="canV" id="img6" width="250" height="250"></canvas>
+          <input id="img6data" class="eData" name="encrypted" type="hidden" size="80" value="Image 6">
+          <input class="dButton" type="button" onclick="viewData(6);" value="View Encrypted Data">
+        </div>
+        <div class="col-sm">
+          <canvas class="canV" id="img3" width="250" height="250"></canvas>
+          <input id="img3data" class="eData" name="encrypted" type="hidden" size="80" value="Image 3">
+          <input class="dButton" type="button" onclick="viewData(3);" value="View Encrypted Data">
 
-              <canvas class="canV" id="img8" width="250" height="250"></canvas>
-              <h2>Encrypted Data</h2>
-              <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
-            </div>
-          </div>
+          <canvas class="canV" id="img7" width="250" height="250"></canvas>
+          <input id="img7data" class="eData" name="encrypted" type="hidden" size="80" value="Image 7">
+          <input class="dButton" type="button" onclick="viewData(7);" value="View Encrypted Data">
+        </div>
+        <div class="col-sm">
+          <canvas class="canV" id="img4" width="250" height="250"></canvas>
+          <input id="img4data" class="eData" name="encrypted" type="hidden" size="80" value="Image 4">
+          <input class="dButton" type="button" onclick="viewData(4);" value="View Encrypted Data">
+
+          <canvas class="canV" id="img8" width="250" height="250"></canvas>
+          <input id="img8data" class="eData" name="encrypted" type="hidden" size="80" value="Image 8">
+          <input class="dButton" type="button" onclick="viewData(8);" value="View Encrypted Data">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <h2 id="eDataHeading"></h2>
+          <p id="eDataOut"></p>
+        </div>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -75,7 +99,13 @@
         ];
         var passwordAry = ["u1p","u2p","u3p","u4p"];
         var encrypted = [0,0,0,0,0,0,0,0];
-
+        var currentUser = "";
+        var permissions = [
+          [true,false,false,false],
+          [false,true,false,false],
+          [false,false,true,false],
+          [false,false,false,true]
+        ];
 
         //encryptAll(); //Initialize all images to be encrypted
 
@@ -85,32 +115,54 @@
             encryptAll();          
           });
         });
-           $(document).ready(function(){
-          $("#user3").click(function(){
-            encryptAll();
-            decryptUserImg(passwordAry[2]);            
-          });
-        });
          $(document).ready(function(){
           $("#user1").click(function(){
             encryptAll();
-            decryptUserImg(passwordAry[0]);   
-            currentUser=1;        
+            currentUser=0; 
+            showOptions();
+            for(var i = 0; i < 4; i++){
+              if(permissions[currentUser][i]){
+                decryptUserImg(passwordAry[i]);
+              }
+            }
           });
         });
           $(document).ready(function(){
           $("#user2").click(function(){
             encryptAll();
-            decryptUserImg(passwordAry[1]);  
+            currentUser=1; 
+            showOptions();
+             for(var i = 0; i < 4; i++){
+              if(permissions[currentUser][i]){
+                decryptUserImg(passwordAry[i]);
+              }
+            }           
           });
         });
+           $(document).ready(function(){
+          $("#user3").click(function(){
+            encryptAll();
+            currentUser =2; 
+            showOptions();   
+            for(var i = 0; i < 4; i++){
+              if(permissions[currentUser][i]){
+                decryptUserImg(passwordAry[i]);
+              }
+            }       
+          });
+        });          
             $(document).ready(function(){
           $("#user4").click(function(){
-            encryptAll();
-            decryptUserImg(passwordAry[3]);            
+            encryptAll();  
+            currentUser=3;
+            showOptions(); 
+            for(var i = 0; i < 4; i++){
+              if(permissions[currentUser][i]){
+                decryptUserImg(passwordAry[i]);
+              }
+            }         
           });
         });
-
       var img1 = new Image();
       img1.src = 'img/user_images/1.jpg';
 
@@ -151,9 +203,7 @@
         imgd1 = ctx1.getImageData(0,0,width,height);
         pix1 = imgd1.data;
         //console.log("Trying to reload");
-
       }
-
       img2.onload = function() {
         ctx2 = document.getElementById('img2').getContext('2d');
         ctx2.drawImage(img2,0,0,250,250);
@@ -220,6 +270,43 @@
 
           console.log(preview);
         }
+
+        function showOptions(){
+          if(currentUser ===""){}
+          else{
+            var count=1;
+            for(var i=0; i<4; i++){
+              if(i == currentUser){
+                continue;
+              }
+              else{
+                if(permissions[i][currentUser]){
+                  document.getElementById("revoke"+count).innerHTML = "User " + (i+1);
+                }
+                else{
+                   document.getElementById("give"+count).innerHTML = "User " + (i+1);
+                } 
+                count++;
+              }
+            }
+          }
+        }
+        function giveAccess(give){
+          if(currentUser === ""){
+            alert("You must sign in first!")
+          }
+          else{
+            permissions[(currentUser+give)%4][currentUser] = true;
+            console.log(permissions[(currentUser+give)%4][currentUser]);
+          }
+        }
+
+        function revokeAccess(){
+          if(currentUser === ""){
+            alert("You must sign in first!")
+          }
+        }
+        
 
 
         //Important Functions ============================================================================
