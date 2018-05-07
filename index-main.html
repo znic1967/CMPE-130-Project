@@ -289,9 +289,9 @@
  
         function viewData(imgnum){
           var id="img"+imgnum+"data";
-          if(!encrypted[imgnum]){
-            document.getElementById(id).value = eval("pix"+imgnum);
-          }
+          // if(!encrypted[imgnum]){
+          //   document.getElementById(id).value = eval("pix"+imgnum);
+          // }
           
           var data=document.getElementById(id).value;
           var preview=data.slice(0,2000);
